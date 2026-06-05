@@ -87,6 +87,7 @@ alias gs='git status'
 alias gd='git diff'
 alias gl='git log --oneline --graph --decorate -20'
 alias glg='git log --oneline --graph --decorate --all'
+alias lg='lazygit'
 
 # ============================================================================
 #  Editor & language env

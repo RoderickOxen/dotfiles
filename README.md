@@ -28,8 +28,10 @@ dotfiles/
 │   ├── .zprofile
 │   └── .p10k.zsh
 ├── config/
-│   └── ghostty/
-│       └── config.ghostty  # symlinked to ~/Library/Application Support/com.mitchellh.ghostty/
+│   ├── ghostty/
+│   │   └── config.ghostty  # symlinked to ~/Library/Application Support/com.mitchellh.ghostty/
+│   └── lazygit/
+│       └── config.yml      # symlinked to ~/.config/lazygit/
 └── opencode/
     └── agents/             # symlinked to ~/.config/opencode/agents/
 ```

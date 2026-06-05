@@ -73,7 +73,14 @@ link "$DOTFILES/config/ghostty/config.ghostty" \
      "$HOME/Library/Application Support/com.mitchellh.ghostty/config.ghostty"
 
 # ----------------------------------------------------------------------------
-#  6. OpenCode agents
+#  6. lazygit config
+# ----------------------------------------------------------------------------
+echo "→ symlinking lazygit config"
+mkdir -p "$HOME/.config/lazygit"
+link "$DOTFILES/config/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
+
+# ----------------------------------------------------------------------------
+#  7. OpenCode agents
 # ----------------------------------------------------------------------------
 echo "→ symlinking opencode agents"
 mkdir -p "$HOME/.config/opencode/agents"
@@ -83,7 +90,7 @@ for agent in "$DOTFILES/opencode/agents/"*.md; do
 done
 
 # ----------------------------------------------------------------------------
-#  7. Done
+#  8. Done
 # ----------------------------------------------------------------------------
 cat <<EOF
 

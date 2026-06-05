@@ -14,6 +14,7 @@ brew "fd"                   # modern find
 brew "fzf"                  # fuzzy finder
 brew "git-delta"            # better git diffs
 brew "gh"                   # github CLI
+brew "lazygit"              # terminal UI for git
 brew "ripgrep"              # fast grep (already had)
 brew "watch"
 brew "zoxide"               # smarter cd

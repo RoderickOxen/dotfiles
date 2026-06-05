@@ -1,0 +1,64 @@
+# ============================================================================
+#  lazygit config
+#  Docs: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+# ============================================================================
+
+gui:
+  # Use Nerd Font glyphs (file-type icons, branch icons)
+  nerdFontsVersion: "3"
+  showIcons: true
+  showCommandLog: false
+  showBottomLine: true
+  showFileTree: true
+  expandFocusedSidePanel: true
+  # Big window thresholds for split view
+  sidePanelWidth: 0.3333
+  mainPanelSplitMode: "flexible"
+  theme:
+    activeBorderColor:
+      - "#83a598"
+      - "bold"
+    inactiveBorderColor:
+      - "#665c54"
+    selectedLineBgColor:
+      - "#3c3836"
+
+git:
+  # Use git-delta for diffs (must be installed: brew install git-delta)
+  paging:
+    colorArg: always
+    pager: delta --paging=never --line-numbers --side-by-side --hunk-header-style="omit"
+  # Auto-fetch in the background every 60s
+  autoFetch: true
+  fetchAll: true
+  # Show commit description below the subject line
+  commit:
+    signOff: false
+    verbose: default
+  # Push current branch with -u if no upstream
+  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --"
+  mainBranches:
+    - main
+    - master
+
+# Disable auto-update prompt (let Homebrew handle it)
+update:
+  method: never
+
+# Keybindings — keep defaults but expose a few quality-of-life tweaks
+keybinding:
+  universal:
+    quit: "q"
+    return: "<esc>"
+    confirm: "<enter>"
+    select: "<space>"
+  # commits panel: rebase interactive on `i`
+  commits:
+    startInteractiveRebase: "i"
+
+# Be less chatty
+disableStartupPopups: true
+notARepository: "skip"
+
+# Prompt before destructive things
+promptToReturnFromSubprocess: false
