@@ -1,0 +1,16 @@
+# Never commit secrets or transient state
+.DS_Store
+*.log
+*.swp
+.env
+.env.local
+.env.*.local
+
+# Local-only overrides
+home/.zshrc.local
+home/.gitconfig.local
+
+# Work-specific (Cloudflare-internal stuff stays off public git)
+Brewfile.work
+work/
+
