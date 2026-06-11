@@ -27,7 +27,7 @@ background-blur-radius = 20
 # ---- Cursor ----
 cursor-style = block
 cursor-style-blink = false
-custom-shader = shaders/ghostty-cursor-shaders/cursor_warp.glsl
+custom-shader = /Users/rnobre/projects/dotfiles/config/ghostty/shaders/cursor_warp.glsl
 custom-shader-animation = true
 
 # ---- Shell integration ----
