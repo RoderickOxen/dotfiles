@@ -30,11 +30,15 @@
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-    os_icon                 # os identifier
     dir                     # current directory
     vcs                     # git status
     prompt_char             # prompt symbol
   )
+  # Strip the home/folder icons from the dir segment
+  typeset -g POWERLEVEL9K_HOME_ICON=
+  typeset -g POWERLEVEL9K_HOME_SUB_ICON=
+  typeset -g POWERLEVEL9K_FOLDER_ICON=
+  typeset -g POWERLEVEL9K_ETC_ICON=
 
   # The list of segments shown on the right. Fill it with less important segments.
   # Right prompt on the last prompt line (where you are typing your commands) gets
