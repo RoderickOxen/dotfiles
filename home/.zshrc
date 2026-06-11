@@ -145,6 +145,17 @@ fi
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Moon-phase animation: cycles each time the prompt is drawn.
+typeset -ga MOON_PHASES=('🌑' '🌒' '🌓' '🌔' '🌕' '🌖' '🌗' '🌘')
+typeset -gi MOON_INDEX=0
+_moon_tick() {
+  MOON_INDEX=$(( (MOON_INDEX + 1) % ${#MOON_PHASES[@]} ))
+  MOON_CURRENT="${MOON_PHASES[$((MOON_INDEX + 1))]}"
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _moon_tick
+_moon_tick  # initialize before first prompt
+
 # ============================================================================
 #  Syntax highlighting — MUST be sourced last
 # ============================================================================
