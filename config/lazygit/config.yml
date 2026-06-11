@@ -22,12 +22,11 @@ gui:
       - "#665c54"
     selectedLineBgColor:
       - "#3c3836"
-
 git:
   # Use git-delta for diffs (must be installed: brew install git-delta)
-  paging:
-    colorArg: always
-    pager: delta --paging=never --line-numbers --side-by-side --hunk-header-style="omit"
+  pagers:
+    - colorArg: always
+      pager: delta --paging=never --line-numbers --side-by-side --hunk-header-style="omit"
   # Auto-fetch in the background every 60s
   autoFetch: true
   fetchAll: true
@@ -40,11 +39,9 @@ git:
   mainBranches:
     - main
     - master
-
 # Disable auto-update prompt (let Homebrew handle it)
 update:
   method: never
-
 # Keybindings — keep defaults but expose a few quality-of-life tweaks
 keybinding:
   universal:
@@ -55,10 +52,8 @@ keybinding:
   # commits panel: rebase interactive on `i`
   commits:
     startInteractiveRebase: "i"
-
 # Be less chatty
 disableStartupPopups: true
 notARepository: "skip"
-
 # Prompt before destructive things
 promptToReturnFromSubprocess: false

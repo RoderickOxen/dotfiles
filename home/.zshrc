@@ -89,6 +89,16 @@ alias gl='git log --oneline --graph --decorate -20'
 alias glg='git log --oneline --graph --decorate --all'
 alias lg='lazygit'
 
+# opencode launcher: oc -p (projects), oc -d (CF-Knowladge docs), oc (cwd)
+oc() {
+  case "$1" in
+    -p) (cd ~/projects && opencode) ;;
+    -d) (cd ~/Documents/CF-Knowladge && opencode) ;;
+    -h|--help) echo "Usage: oc [-p|-d]\n  -p  open ~/projects\n  -d  open ~/Documents/CF-Knowladge\n  (no args) open current directory" ;;
+    *)  opencode "$@" ;;
+  esac
+}
+
 # ============================================================================
 #  Editor & language env
 # ============================================================================

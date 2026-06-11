@@ -39,8 +39,8 @@ copy-on-select = clipboard
 scrollback-limit = 100000
 
 # ---- Bell ----
-audible-bell = false
-visual-bell = false
+# Disable all bell features (audible + visual)
+bell-features =
 
 # ---- Quick terminal (dropdown via Cmd+`) ----
 quick-terminal-position = top
