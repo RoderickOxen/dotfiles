@@ -1,0 +1,36 @@
+{
+  "storagePath": "~/.opencode-mem/data",
+
+  "memory": {
+    "defaultScope": "project"
+  },
+
+  "webServerEnabled": true,
+  "webServerHost": "127.0.0.1",
+  "webServerPort": 4747,
+
+  "autoCaptureEnabled": true,
+  "autoCaptureLanguage": "auto",
+  "opencodeProvider": "anthropic",
+  "opencodeModel": "claude-haiku-4-5-20251001",
+
+  "showAutoCaptureToasts": true,
+  "showUserProfileToasts": true,
+  "showErrorToasts": true,
+
+  "userProfileAnalysisInterval": 10,
+  "userProfileMaxContextBytes": 32768,
+  "maxMemories": 10,
+
+  "chatMessage": {
+    "enabled": true,
+    "maxMemories": 3,
+    "excludeCurrentSession": true,
+    "injectOn": "first"
+  },
+
+  "compaction": {
+    "enabled": true,
+    "memoryLimit": 10
+  }
+}

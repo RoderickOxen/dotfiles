@@ -80,8 +80,13 @@ mkdir -p "$HOME/.config/lazygit"
 link "$DOTFILES/config/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
 
 # ----------------------------------------------------------------------------
-#  7. OpenCode agents
+#  7. OpenCode config and agents
 # ----------------------------------------------------------------------------
+echo "→ symlinking opencode config"
+mkdir -p "$HOME/.config/opencode"
+link "$DOTFILES/opencode/opencode.jsonc" "$HOME/.config/opencode/opencode.jsonc"
+link "$DOTFILES/opencode/opencode-mem.jsonc" "$HOME/.config/opencode/opencode-mem.jsonc"
+
 echo "→ symlinking opencode agents"
 mkdir -p "$HOME/.config/opencode/agents"
 for agent in "$DOTFILES/opencode/agents/"*.md; do

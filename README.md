@@ -33,6 +33,8 @@ dotfiles/
 │   └── lazygit/
 │       └── config.yml      # symlinked to ~/.config/lazygit/
 └── opencode/
+    ├── opencode.jsonc      # symlinked to ~/.config/opencode/opencode.jsonc
+    ├── opencode-mem.jsonc  # symlinked to ~/.config/opencode/opencode-mem.jsonc
     └── agents/             # symlinked to ~/.config/opencode/agents/
 ```
 
@@ -41,6 +43,7 @@ dotfiles/
 Deliberately excluded:
 
 - **Secrets** — `.ssh/`, `.aws/`, API tokens, history files
+- **OpenCode auth** — `~/.local/share/opencode/auth.json` and MCP OAuth tokens stay per-machine
 - **OpenCode skills** — these come from [`mattpocock/skills`](https://github.com/mattpocock/skills). Bootstrap them separately with the snippet in `install.sh`'s exit message
 - **`.gitconfig`** — work email vs personal email; managed per-machine
 

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "sisyphus",
+  "model": "anthropic/claude-sonnet-4-5",
+  "autoupdate": true,
+
+  "plugin": [
+    "oh-my-openagent@latest",
+    "opencode-mem@latest"
+  ],
+
+  "permission": {
+    "*": "allow",
+    "bash": {
+      "*": "allow",
+      "rm *": "ask",
+      "rmdir *": "ask",
+      "git push *": "ask",
+      "git checkout *": "ask"
+    },
+    "get-gmail-profile": "allow",
+    "get-unread-emails": "allow",
+    "global-search-emails": "allow",
+    "list-gmail-labels": "allow",
+    "summarize-top-k-emails": "allow",
+    "vector-search-emails": "allow",
+    "send-email": "ask",
+    "delete-email": "ask",
+    "delete-gmail-label": "ask",
+    "create-label": "ask"
+  },
+
+  "command": {
+    "summarize": {
+      "description": "Summarize the current project",
+      "template": "Give me a brief overview of this project. What is it? What are the main files and folders? What does it seem to be for?"
+    }
+  },
+
+  "mcp": {
+    "excalidraw-cf": {
+      "type": "remote",
+      "url": "https://mcp.excalidraw.cfdata.org/mcp",
+      "oauth": {},
+      "enabled": true
+    },
+    "open-meteo": {
+      "type": "local",
+      "command": ["npx", "-y", "-p", "open-meteo-mcp-server", "open-meteo-mcp-server"]
+    },
+    "cf-portal": {
+      "enabled": true
+    }
+  }
+}

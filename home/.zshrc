@@ -89,14 +89,20 @@ alias gl='git log --oneline --graph --decorate -20'
 alias glg='git log --oneline --graph --decorate --all'
 alias lg='lazygit'
 
-# opencode launcher: oc -p (projects), oc -d (CF-Knowladge docs), oc (cwd)
+# opencode launcher: oc -p (projects), oc -d (CF-Knowladge docs), oc -o (OmO/current dir), oc (cwd)
 oc() {
   case "$1" in
     -p) (cd ~/projects && opencode) ;;
     -d) (cd ~/Documents/CF-Knowladge && opencode) ;;
-    -h|--help) echo "Usage: oc [-p|-d]\n  -p  open ~/projects\n  -d  open ~/Documents/CF-Knowladge\n  (no args) open current directory" ;;
+    -o) omo "${@:2}" ;;
+    -h|--help) echo "Usage: oc [-p|-d|-o]\n  -p  open ~/projects\n  -d  open ~/Documents/CF-Knowladge\n  -o  open OmO/OpenCode in current directory\n  (no args) open current directory" ;;
     *)  opencode "$@" ;;
   esac
+}
+
+# OmO is installed globally via OpenCode plugins. This is just a familiar alias.
+omo() {
+  opencode "$@"
 }
 
 # ============================================================================
@@ -160,3 +166,6 @@ _moon_tick  # initialize before first prompt
 #  Syntax highlighting — MUST be sourced last
 # ============================================================================
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Added by git-ai installer on Thu Jul  2 02:58:18 WEST 2026
+export PATH="/Users/rnobre/.git-ai/bin:$PATH"
