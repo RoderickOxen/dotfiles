@@ -169,3 +169,7 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Added by git-ai installer on Thu Jul  2 02:58:18 WEST 2026
 export PATH="/Users/rnobre/.git-ai/bin:$PATH"
+export CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.11
+
+# oh-my-opencode-slim: enable parallel background subagent execution
+export OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS=true
