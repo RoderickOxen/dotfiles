@@ -67,12 +67,6 @@ OpenCode's config directory (`~/.config/opencode/`) is a mix of dotfiles-managed
 - Adding a new custom agent → drop `.md` in `opencode/agents/` and re-run `install.sh` to symlink it.
 - Adding a custom skill → put it in `~/.config/opencode/skills/<name>/` directly. Skills are NOT currently tracked in this repo.
 
-**Known drift** (as of last audit — 2026-08-04):
-- `opencode/opencode.jsonc` in this repo still references legacy plugins (`oh-my-openagent@latest`, `opencode-mem@latest`). The live setup migrated to `oh-my-opencode-slim` + `@tarquinen/opencode-dcp` but this repo wasn't updated. On a fresh `install.sh`, the machine would end up with the legacy plugins loaded — the live `~/.config/opencode/opencode.json` (written by slim's installer) would still take precedence for slim, but permissions and MCP config would drift.
-- `opencode/agents/karpathy-code.md` is in this repo but not currently in `~/.config/opencode/agents/`.
-
-Sync ordering is a separate task; do not silently reconcile without asking.
-
 ---
 
 ## Adding a new tracked config
