@@ -97,7 +97,29 @@ for agent in "$DOTFILES/opencode/agents/"*.md; do
 done
 
 # ----------------------------------------------------------------------------
-#  8. Done
+#  8. pokemon-colorscripts (used as fastfetch logo in .zshrc)
+# ----------------------------------------------------------------------------
+if ! command -v pokemon-colorscripts >/dev/null; then
+  echo "→ installing pokemon-colorscripts to /opt/homebrew"
+  POKE_TMP="$(mktemp -d)"
+  git clone --depth=1 https://github.com/acxz/pokescript.git "$POKE_TMP/pokescript"
+  POKE_INSTALL_DIR=/opt/homebrew/opt
+  POKE_BIN_DIR=/opt/homebrew/bin
+  rm -rf "$POKE_INSTALL_DIR/pokemon-colorscripts"
+  mkdir -p "$POKE_INSTALL_DIR/pokemon-colorscripts"
+  cp -rf "$POKE_TMP/pokescript/colorscripts" "$POKE_INSTALL_DIR/pokemon-colorscripts/"
+  cp "$POKE_TMP/pokescript/pokemon-colorscripts.sh" "$POKE_INSTALL_DIR/pokemon-colorscripts/"
+  cp "$POKE_TMP/pokescript/nameslist.txt" "$POKE_INSTALL_DIR/pokemon-colorscripts/"
+  rm -f "$POKE_BIN_DIR/pokemon-colorscripts"
+  ln -s "$POKE_INSTALL_DIR/pokemon-colorscripts/pokemon-colorscripts.sh" "$POKE_BIN_DIR/pokemon-colorscripts"
+  rm -rf "$POKE_TMP"
+  echo "  ✓ pokemon-colorscripts installed"
+else
+  echo "✓ pokemon-colorscripts already installed"
+fi
+
+# ----------------------------------------------------------------------------
+#  9. Done
 # ----------------------------------------------------------------------------
 cat <<EOF
 

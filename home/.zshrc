@@ -8,8 +8,13 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ---- Welcome banner (BEFORE instant prompt — any console output must go here) ----
 # Only on interactive login shells (skips scripts and subshells).
+# Uses pokemon-colorscripts as fastfetch logo when available, else default logo.
 if [[ -o login && -o interactive ]] && command -v fastfetch >/dev/null; then
-  fastfetch
+  if command -v pokemon-colorscripts >/dev/null; then
+    fastfetch --logo-type file-raw --logo =(pokemon-colorscripts -r)
+  else
+    fastfetch
+  fi
 fi
 
 # ---- Powerlevel10k instant prompt config (must be before the block) ----
