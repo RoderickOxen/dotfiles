@@ -7,14 +7,9 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # ---- Welcome banner (BEFORE instant prompt — any console output must go here) ----
-# Space boot animation on interactive login shells. Skip with SKIP_BOOT_ANIM=1.
-# Falls back to fastfetch if the script isn't present (e.g. before install.sh).
-if [[ -o login && -o interactive ]] && [[ -z "$SKIP_BOOT_ANIM" ]]; then
-  if [[ -x "$HOME/projects/dotfiles/scripts/space-boot.py" ]] && command -v python3 >/dev/null; then
-    python3 "$HOME/projects/dotfiles/scripts/space-boot.py"
-  elif command -v fastfetch >/dev/null; then
-    fastfetch
-  fi
+# Only on interactive login shells (skips scripts and subshells).
+if [[ -o login && -o interactive ]] && command -v fastfetch >/dev/null; then
+  fastfetch
 fi
 
 # ---- Powerlevel10k instant prompt config (must be before the block) ----
