@@ -86,6 +86,8 @@ echo "→ symlinking opencode config"
 mkdir -p "$HOME/.config/opencode"
 link "$DOTFILES/opencode/opencode.jsonc" "$HOME/.config/opencode/opencode.jsonc"
 link "$DOTFILES/opencode/opencode-mem.jsonc" "$HOME/.config/opencode/opencode-mem.jsonc"
+link "$DOTFILES/opencode/oh-my-opencode-slim.json" "$HOME/.config/opencode/oh-my-opencode-slim.json"
+link "$DOTFILES/opencode/dcp.jsonc" "$HOME/.config/opencode/dcp.jsonc"
 
 echo "→ symlinking opencode agents"
 mkdir -p "$HOME/.config/opencode/agents"

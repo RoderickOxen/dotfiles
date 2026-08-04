@@ -1,0 +1,116 @@
+{
+  "$schema": "https://unpkg.com/oh-my-opencode-slim@latest/oh-my-opencode-slim.schema.json",
+  "preset": "mixed",
+  "multiplexer": {
+    "type": "none"
+  },
+  "presets": {
+    "mixed": {
+      "orchestrator": {
+        "model": "anthropic/claude-opus-4-8",
+        "variant": "high",
+        "skills": ["*"],
+        "mcps": ["*", "!context7"]
+      },
+      "oracle": {
+        "model": "anthropic/claude-opus-4-8",
+        "variant": "high",
+        "skills": ["simplify"],
+        "mcps": []
+      },
+      "council": {
+        "model": "anthropic/claude-opus-4-8",
+        "variant": "high",
+        "skills": [],
+        "mcps": []
+      },
+      "librarian": {
+        "model": "openai/gpt-5.3-codex",
+        "variant": "low",
+        "skills": [],
+        "mcps": ["context7", "gh_grep"]
+      },
+      "explorer": {
+        "model": "openai/gpt-5.3-codex",
+        "variant": "low",
+        "skills": [],
+        "mcps": []
+      },
+      "designer": {
+        "model": "anthropic/claude-sonnet-4-6",
+        "variant": "medium",
+        "skills": [],
+        "mcps": []
+      },
+      "fixer": {
+        "model": "anthropic/claude-sonnet-4-6",
+        "variant": "high",
+        "skills": [],
+        "mcps": []
+      }
+    },
+    "opencode-go": {
+      "orchestrator": {
+        "model": "opencode-go/minimax-m3",
+        "variant": "thinking",
+        "skills": ["*"],
+        "mcps": ["*", "!context7"]
+      },
+      "oracle": {
+        "model": "opencode-go/qwen3.7-max",
+        "variant": "max",
+        "skills": ["simplify"],
+        "mcps": []
+      },
+      "explorer": {
+        "model": "opencode-go/deepseek-v4-flash",
+        "variant": "high",
+        "skills": [],
+        "mcps": []
+      },
+      "librarian": {
+        "model": "opencode-go/deepseek-v4-flash",
+        "variant": "high",
+        "skills": [],
+        "mcps": ["context7", "gh_grep"]
+      },
+      "designer": {
+        "model": "opencode-go/kimi-k2.7-code",
+        "skills": [],
+        "mcps": []
+      },
+      "fixer": {
+        "model": "opencode-go/deepseek-v4-flash",
+        "variant": "high",
+        "skills": [],
+        "mcps": []
+      },
+      "observer": {
+        "model": "opencode-go/mimo-v2.5",
+        "skills": [],
+        "mcps": []
+      }
+    }
+  },
+  "council": {
+    "default_preset": "balanced",
+    "presets": {
+      "balanced": {
+        "alpha": {
+          "model": "openai/gpt-5.3-codex",
+          "variant": "high",
+          "prompt": "Rigorous code-focused perspective. Prioritize implementation feasibility, edge cases, and concrete failure modes."
+        },
+        "beta": {
+          "model": "anthropic/claude-sonnet-4-6",
+          "variant": "medium",
+          "prompt": "Architectural perspective. Prioritize design coherence, module boundaries, and long-term maintainability."
+        },
+        "gamma": {
+          "model": "google/gemini-2.5-pro",
+          "prompt": "Alternative perspective. Look for options the other councillors missed and challenge assumptions."
+        }
+      }
+    }
+  }
+}
