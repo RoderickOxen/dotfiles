@@ -21,6 +21,7 @@ Read this before writing to any config file under `~` or `~/.config/`.
 | `opencode/oh-my-opencode-slim.json` | `~/.config/opencode/oh-my-opencode-slim.json` | Slim's per-agent model/skill/mcp preset config |
 | `opencode/dcp.jsonc` | `~/.config/opencode/dcp.jsonc` | DCP (Dynamic Context Pruning) plugin config |
 | `opencode/agents/*.md` | `~/.config/opencode/agents/*.md` | One symlink per agent file |
+| `opencode/skills/*/SKILL.md` | `~/.config/opencode/skills/*/SKILL.md` | One symlink per custom skill |
 
 **Golden rule:** to change a tracked config, edit the file in this repo, not the symlink target. If the symlink target is not a symlink (broken by an installer or ad-hoc edit), re-run `install.sh` to restore.
 
@@ -52,11 +53,12 @@ OpenCode's config directory (`~/.config/opencode/`) is a mix of dotfiles-managed
 - `oh-my-opencode-slim.json` — slim's per-agent model/skill/mcp preset config
 - `dcp.jsonc` — Dynamic Context Pruning plugin config (@tarquinen/opencode-dcp)
 - `agents/*.md` — custom subagent files
+- `skills/*/SKILL.md` — custom user skills
 
 **Managed by external tools (not tracked, not symlinked):**
 - `opencode.json` — created by `oh-my-opencode-slim`'s installer. If both `.json` and `.jsonc` exist, opencode uses `.jsonc` first. Watch for both files existing when troubleshooting.
 - `tui.json` — TUI state (slim writes to this on install)
-- `skills/` — a mix of slim-installed skills (managed by slim's manifest at `.oh-my-opencode-slim/skills-manifest.json`) and user-added skills. Don't blindly rm-rf this dir; slim's manifest treats deletion as intentional.
+- `skills/` — a mix of tracked custom skills and slim-installed skills (managed by slim's manifest at `.oh-my-opencode-slim/skills-manifest.json`). Don't blindly rm-rf this dir; slim's manifest treats deletion as intentional.
 - `.oh-my-opencode-slim/` — slim's internal state
 - `node_modules/`, `package.json`, `package-lock.json` — plugin dependencies
 
@@ -65,7 +67,7 @@ OpenCode's config directory (`~/.config/opencode/`) is a mix of dotfiles-managed
 - Changing slim's per-agent models, preset, or council → edit `opencode/oh-my-opencode-slim.json` in this repo (symlinked to `~/.config/opencode/oh-my-opencode-slim.json`).
 - Changing DCP settings → edit `opencode/dcp.jsonc` in this repo.
 - Adding a new custom agent → drop `.md` in `opencode/agents/` and re-run `install.sh` to symlink it.
-- Adding a custom skill → put it in `~/.config/opencode/skills/<name>/` directly. Skills are NOT currently tracked in this repo.
+- Adding a custom skill → put it in `opencode/skills/<name>/SKILL.md` in this repo and re-run `install.sh` to symlink it.
 
 ---
 
@@ -82,6 +84,12 @@ OpenCode's config directory (`~/.config/opencode/`) is a mix of dotfiles-managed
 
 1. Drop the `.md` in `opencode/agents/` in this repo.
 2. The install.sh loop `for agent in "$DOTFILES/opencode/agents/"*.md; do ... link ... done` picks it up automatically. Just re-run `install.sh`.
+3. Commit.
+
+## Adding a new managed OpenCode skill
+
+1. Drop the skill in `opencode/skills/<name>/SKILL.md` in this repo.
+2. The install.sh loop `for skill in "$DOTFILES/opencode/skills/"*; do ... link ... done` picks it up automatically. Just re-run `install.sh`.
 3. Commit.
 
 ---

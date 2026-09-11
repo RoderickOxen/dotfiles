@@ -80,7 +80,7 @@ mkdir -p "$HOME/.config/lazygit"
 link "$DOTFILES/config/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
 
 # ----------------------------------------------------------------------------
-#  7. OpenCode config and agents
+#  7. OpenCode config, agents, and custom skills
 # ----------------------------------------------------------------------------
 echo "→ symlinking opencode config"
 mkdir -p "$HOME/.config/opencode"
@@ -94,6 +94,15 @@ mkdir -p "$HOME/.config/opencode/agents"
 for agent in "$DOTFILES/opencode/agents/"*.md; do
   name="$(basename "$agent")"
   link "$agent" "$HOME/.config/opencode/agents/$name"
+done
+
+echo "→ symlinking opencode custom skills"
+mkdir -p "$HOME/.config/opencode/skills"
+for skill in "$DOTFILES/opencode/skills/"*; do
+  [[ -d "$skill" ]] || continue
+  name="$(basename "$skill")"
+  mkdir -p "$HOME/.config/opencode/skills/$name"
+  link "$skill/SKILL.md" "$HOME/.config/opencode/skills/$name/SKILL.md"
 done
 
 # ----------------------------------------------------------------------------
@@ -128,7 +137,7 @@ cat <<EOF
 Next steps:
   - Restart your shell:                          exec zsh
   - Restart Ghostty to pick up new config.
-  - Install OpenCode skills (NOT managed here):
+  - Install third-party OpenCode skills (custom skills are managed here):
       git clone https://github.com/mattpocock/skills /tmp/mpskills
       cp -r /tmp/mpskills/skills/engineering/* ~/.config/opencode/skills/
       # then prune / pick what you want
