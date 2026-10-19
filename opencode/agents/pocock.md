@@ -1,7 +1,7 @@
 ---
 description: Feature builder using Matt Pocock's skill-driven workflow — grill, design, PRD, issues, build with TDD, triage, and improve. Orchestrates parallel pocock-worker subagents for issue execution.
 mode: primary
-model: anthropic/claude-opus-4-7
+model: anthropic/claude-opus-5-5
 color: "#6366F1"
 permission:
   edit: allow

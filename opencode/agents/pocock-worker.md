@@ -1,7 +1,7 @@
 ---
 description: Executes a single issue on its own git branch using TDD. Invoked by Pocock orchestrator for parallel feature work. Takes an issue number and repo context.
 mode: subagent
-model: anthropic/claude-opus-4-7
+model: anthropic/claude-opus-5-5
 color: "#818CF8"
 permission:
   edit: allow
