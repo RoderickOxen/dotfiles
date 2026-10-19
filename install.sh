@@ -85,9 +85,16 @@ link "$DOTFILES/config/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
 echo "→ symlinking opencode config"
 mkdir -p "$HOME/.config/opencode"
 link "$DOTFILES/opencode/opencode.jsonc" "$HOME/.config/opencode/opencode.jsonc"
-link "$DOTFILES/opencode/opencode-mem.jsonc" "$HOME/.config/opencode/opencode-mem.jsonc"
+link "$DOTFILES/opencode/tui.json" "$HOME/.config/opencode/tui.json"
 link "$DOTFILES/opencode/oh-my-opencode-slim.json" "$HOME/.config/opencode/oh-my-opencode-slim.json"
 link "$DOTFILES/opencode/dcp.jsonc" "$HOME/.config/opencode/dcp.jsonc"
+
+# opencode merges opencode.json and opencode.jsonc (plugin lists are combined).
+# The tracked .jsonc is the only main config; warn if an installer left a .json.
+if [[ -e "$HOME/.config/opencode/opencode.json" ]]; then
+  echo "  ⚠️  ~/.config/opencode/opencode.json exists alongside the tracked opencode.jsonc."
+  echo "     Merge anything you need into opencode/opencode.jsonc, then remove opencode.json."
+fi
 
 echo "→ symlinking opencode agents"
 mkdir -p "$HOME/.config/opencode/agents"

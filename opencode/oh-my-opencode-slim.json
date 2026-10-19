@@ -1,13 +1,14 @@
 {
-  "$schema": "https://unpkg.com/oh-my-opencode-slim@latest/oh-my-opencode-slim.schema.json",
+  "$schema": "https://unpkg.com/oh-my-opencode-slim@3.0.5/oh-my-opencode-slim.schema.json",
   "preset": "mixed",
+  "disabled_agents": [],
   "multiplexer": {
     "type": "none"
   },
   "presets": {
     "mixed": {
       "orchestrator": {
-        "model": "anthropic/claude-opus-4-8",
+        "model": "anthropic/claude-opus-5-5",
         "variant": "high",
         "skills": ["*"],
         "mcps": ["*", "!context7"]
@@ -24,17 +25,11 @@
         "skills": [],
         "mcps": []
       },
-      "librarian": {
-        "model": "openai/gpt-5.3-codex",
-        "variant": "low",
-        "skills": [],
-        "mcps": ["context7", "gh_grep"]
-      },
       "explorer": {
         "model": "openai/gpt-5.3-codex",
         "variant": "low",
         "skills": [],
-        "mcps": []
+        "mcps": ["context7", "gh_grep"]
       },
       "designer": {
         "model": "anthropic/claude-sonnet-4-6",
@@ -45,6 +40,11 @@
       "fixer": {
         "model": "anthropic/claude-sonnet-4-6",
         "variant": "high",
+        "skills": [],
+        "mcps": []
+      },
+      "observer": {
+        "model": "anthropic/claude-sonnet-4-6",
         "skills": [],
         "mcps": []
       }
@@ -63,12 +63,6 @@
         "mcps": []
       },
       "explorer": {
-        "model": "opencode-go/deepseek-v4-flash",
-        "variant": "high",
-        "skills": [],
-        "mcps": []
-      },
-      "librarian": {
         "model": "opencode-go/deepseek-v4-flash",
         "variant": "high",
         "skills": [],

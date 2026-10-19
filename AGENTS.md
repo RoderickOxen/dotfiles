@@ -16,8 +16,8 @@ Read this before writing to any config file under `~` or `~/.config/`.
 | `home/.p10k.zsh` | `~/.p10k.zsh` | Powerlevel10k theme |
 | `config/ghostty/config.ghostty` | `~/Library/Application Support/com.mitchellh.ghostty/config.ghostty` | See Ghostty gotcha below |
 | `config/lazygit/config.yml` | `~/.config/lazygit/config.yml` | |
-| `opencode/opencode.jsonc` | `~/.config/opencode/opencode.jsonc` | See opencode notes below |
-| `opencode/opencode-mem.jsonc` | `~/.config/opencode/opencode-mem.jsonc` | |
+| `opencode/opencode.jsonc` | `~/.config/opencode/opencode.jsonc` | The only main config. See opencode notes below |
+| `opencode/tui.json` | `~/.config/opencode/tui.json` | TUI plugin list (pinned slim version) |
 | `opencode/oh-my-opencode-slim.json` | `~/.config/opencode/oh-my-opencode-slim.json` | Slim's per-agent model/skill/mcp preset config |
 | `opencode/dcp.jsonc` | `~/.config/opencode/dcp.jsonc` | DCP (Dynamic Context Pruning) plugin config |
 | `opencode/agents/*.md` | `~/.config/opencode/agents/*.md` | One symlink per agent file |
@@ -48,19 +48,24 @@ Also note the filename oddity: this repo uses `config.ghostty` (not `config`). G
 OpenCode's config directory (`~/.config/opencode/`) is a mix of dotfiles-managed files and files owned by external installers/plugins. **The repo is not the sole source of truth here.**
 
 **Managed by this repo (via `install.sh` symlinks):**
-- `opencode.jsonc` — the main config
-- `opencode-mem.jsonc`
+- `opencode.jsonc` — the main config (plugins, permissions, MCP servers). The only main config file.
+- `tui.json` — TUI plugin list
 - `oh-my-opencode-slim.json` — slim's per-agent model/skill/mcp preset config
 - `dcp.jsonc` — Dynamic Context Pruning plugin config (@tarquinen/opencode-dcp)
 - `agents/*.md` — custom subagent files
 - `skills/*/SKILL.md` — custom user skills
 
 **Managed by external tools (not tracked, not symlinked):**
-- `opencode.json` — created by `oh-my-opencode-slim`'s installer. If both `.json` and `.jsonc` exist, opencode uses `.jsonc` first. Watch for both files existing when troubleshooting.
-- `tui.json` — TUI state (slim writes to this on install)
+- `cloudflare-cf-cli-instructions.md` — referenced by `instructions` in `opencode.jsonc`. Deliberately untracked (contains account IDs; this repo is public). Recreate by hand on a new machine.
 - `skills/` — a mix of tracked custom skills and slim-installed skills (managed by slim's manifest at `.oh-my-opencode-slim/skills-manifest.json`). Don't blindly rm-rf this dir; slim's manifest treats deletion as intentional.
 - `.oh-my-opencode-slim/` — slim's internal state
 - `node_modules/`, `package.json`, `package-lock.json` — plugin dependencies
+
+**Plugin version pinning (oh-my-opencode-slim):**
+- The plugin is pinned to an exact version (currently `oh-my-opencode-slim@3.0.5`) in **both** `opencode/opencode.jsonc` and `opencode/tui.json`. Keep them identical; the server and TUI halves load separately and must match.
+- The `$schema` URL in `opencode/oh-my-opencode-slim.json` is pinned to the same version.
+- To upgrade: bump the version in all three places, restart opencode (it downloads the pinned version into `~/.cache/opencode/packages/`), then run `doctor` from that cached package.
+- **Do not re-run `bunx oh-my-opencode-slim install`** on a configured machine. It writes `~/.config/opencode/opencode.json`, and opencode merges `opencode.json` with `opencode.jsonc` (plugin lists are combined), which silently diverges from the tracked config. `install.sh` warns if an `opencode.json` is present.
 
 **When editing OpenCode config:**
 - Changing plugin list, permissions, MCP config, or default agent → edit `opencode/opencode.jsonc` in this repo.
@@ -108,5 +113,6 @@ OpenCode's config directory (`~/.config/opencode/`) is a mix of dotfiles-managed
 - [ ] Is the file symlinked via `install.sh`? If yes, edit the repo file, not the symlink target.
 - [ ] For Ghostty: don't create `~/.config/ghostty/config`. Edit `config/ghostty/config.ghostty` here.
 - [ ] For OpenCode: is the change owned by dotfiles (`opencode.jsonc`, agents) or by an installer (slim's config, DCP)? Route accordingly.
-- [ ] Before committing OpenCode changes, sanity-check with `bunx oh-my-opencode-slim@latest doctor`.
+- [ ] Before committing OpenCode changes, sanity-check with `bunx oh-my-opencode-slim@<pinned-version> doctor` (match the version pinned in `opencode.jsonc`).
+- [ ] This repo is **public**. Never commit tokens, API keys, account IDs, or Cloudflare-internal content.
 - [ ] After committing changes to `install.sh` or new tracked configs, mention that a fresh `install.sh` run is needed to activate on this machine.
