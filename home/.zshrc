@@ -178,3 +178,4 @@ export CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.11
 
 # oh-my-opencode-slim: enable parallel background subagent execution
 export OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS=true
+export PATH="/Users/rnobre/.bun/bin:$PATH"
