@@ -73,6 +73,7 @@ OpenCode's config directory (`~/.config/opencode/`) is a mix of dotfiles-managed
 - Changing DCP settings → edit `opencode/dcp.jsonc` in this repo.
 - Adding a new custom agent → drop `.md` in `opencode/agents/` and re-run `install.sh` to symlink it.
 - Adding a custom skill → put it in `opencode/skills/<name>/SKILL.md` in this repo and re-run `install.sh` to symlink it.
+- Skills that mention Cloudflare-internal hosts, tools or data (e.g. `se-new-opp-setup`) → put them in `work/opencode/skills/<name>/SKILL.md` instead. `work/` is gitignored because this repo is public; `install.sh` symlinks those skills too.
 
 ---
 

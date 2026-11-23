@@ -105,7 +105,8 @@ done
 
 echo "→ symlinking opencode custom skills"
 mkdir -p "$HOME/.config/opencode/skills"
-for skill in "$DOTFILES/opencode/skills/"*; do
+# work/opencode/skills holds Cloudflare-internal skills (gitignored, local/private only).
+for skill in "$DOTFILES/opencode/skills/"* "$DOTFILES/work/opencode/skills/"*; do
   [[ -d "$skill" ]] || continue
   name="$(basename "$skill")"
   mkdir -p "$HOME/.config/opencode/skills/$name"
